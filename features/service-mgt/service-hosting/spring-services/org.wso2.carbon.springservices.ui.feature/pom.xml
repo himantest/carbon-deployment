@@ -28,7 +28,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>org.wso2.carbon.springservices.ui.feature</artifactId>
-    <packaging>pom</packaging>
+    <packaging>carbon-feature</packaging>
     <name>Spring Service Hosting UI Feature</name>
     <url>http://wso2.org</url>
     <description>This feature contains the bundles required for Front-end Spring Service hosting functionality
@@ -53,34 +53,26 @@
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>carbon-p2-plugin</artifactId>
                 <version>${carbon.p2.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>p2-feature-generation</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>p2-feature-gen</goal>
-                        </goals>
-                        <configuration>
-                            <id>org.wso2.carbon.springservices.ui</id>
-                            <propertiesFile>../../../../etc/feature.properties</propertiesFile>
-                            <adviceFile>
-                                <properties>
-                                    <propertyDef>org.wso2.carbon.p2.category.type:console</propertyDef>
-                                    <propertyDef>org.eclipse.equinox.p2.type.group:false</propertyDef>
-                                </properties>
-                            </adviceFile>
-                            <bundles>
-                                <bundleDef>org.wso2.carbon:org.wso2.carbon.springservices.ui</bundleDef>
-                                <bundleDef>org.wso2.carbon:org.wso2.carbon.springservices.stub</bundleDef>
-                                <bundleDef>org.springframework.ws.wso2:spring.framework</bundleDef>
-                            </bundles>
-                            <importFeatures>
-                                <importFeatureDef>org.wso2.carbon.service.mgt.ui:${project.version}
-                                </importFeatureDef>
-                            </importFeatures>
-                        </configuration>
-                    </execution>
-                </executions>
+                <extensions>true</extensions>
+                <configuration>
+                    <id>org.wso2.carbon.springservices.ui</id>
+                    <propertiesFile>../../../../etc/feature.properties</propertiesFile>
+                    <adviceFile>
+                        <properties>
+                            <propertyDef>org.wso2.carbon.p2.category.type:console</propertyDef>
+                            <propertyDef>org.eclipse.equinox.p2.type.group:false</propertyDef>
+                        </properties>
+                    </adviceFile>
+                    <bundles>
+                        <bundleDef>org.wso2.carbon:org.wso2.carbon.springservices.ui</bundleDef>
+                        <bundleDef>org.wso2.carbon:org.wso2.carbon.springservices.stub</bundleDef>
+                        <bundleDef>org.springframework.ws.wso2:spring.framework</bundleDef>
+                    </bundles>
+                    <importFeatures>
+                        <importFeatureDef>org.wso2.carbon.service.mgt.ui:${project.version}
+                        </importFeatureDef>
+                    </importFeatures>
+                </configuration>
             </plugin>
         </plugins>
     </build>

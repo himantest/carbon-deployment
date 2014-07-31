@@ -28,7 +28,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>org.wso2.carbon.service.mgt.feature</artifactId>
-    <packaging>pom</packaging>
+    <packaging>carbon-feature</packaging>
     <version>4.3.0-SNAPSHOT</version>
     <name>WSO2 Carbon - Service Management Feature</name>
     <url>http://wso2.org</url>
@@ -53,28 +53,20 @@
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>carbon-p2-plugin</artifactId>
                 <version>${carbon.p2.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>p2-feature-generation</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>p2-feature-gen</goal>
-                        </goals>
-                        <configuration>
-                            <id>org.wso2.carbon.service.mgt</id>
-                            <propertiesFile>../../../etc/feature.properties</propertiesFile>
-                            <importFeatures>
-                                <importFeatureDef>org.wso2.carbon.core:${carbon.platform.version}</importFeatureDef>
-                            </importFeatures>
-                            <includedFeatures>
-                                <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.service.mgt.server.feature
-                                </includedFeatureDef>
-                                <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.service.mgt.ui.feature:${project.version}
-                                </includedFeatureDef>
-                            </includedFeatures>
-                        </configuration>
-                    </execution>
-                </executions>
+                <extensions>true</extensions>
+                <configuration>
+                    <id>org.wso2.carbon.service.mgt</id>
+                    <propertiesFile>../../../etc/feature.properties</propertiesFile>
+                    <importFeatures>
+                        <importFeatureDef>org.wso2.carbon.core:${carbon.platform.version}</importFeatureDef>
+                    </importFeatures>
+                    <includedFeatures>
+                        <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.service.mgt.server.feature
+                        </includedFeatureDef>
+                        <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.service.mgt.ui.feature:${project.version}
+                        </includedFeatureDef>
+                    </includedFeatures>
+                </configuration>
             </plugin>
         </plugins>
     </build>

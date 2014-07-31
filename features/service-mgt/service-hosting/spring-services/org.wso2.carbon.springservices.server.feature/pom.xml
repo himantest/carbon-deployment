@@ -28,7 +28,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>org.wso2.carbon.springservices.server.feature</artifactId>
-    <packaging>pom</packaging>
+    <packaging>carbon-feature</packaging>
     <name>Spring Service Hosting Core Feature</name>
     <url>http://wso2.org</url>
     <description>This feature contains the core bundles required for Back-end Spring Service hosting functionality
@@ -49,32 +49,24 @@
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>carbon-p2-plugin</artifactId>
                 <version>${carbon.p2.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>p2-feature-generation</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>p2-feature-gen</goal>
-                        </goals>
-                        <configuration>
-                            <id>org.wso2.carbon.springservices.server</id>
-                            <propertiesFile>../../../../etc/feature.properties</propertiesFile>
-                            <adviceFile>
-                                <properties>
-                                    <propertyDef>org.wso2.carbon.p2.category.type:server</propertyDef>
-                                    <propertyDef>org.eclipse.equinox.p2.type.group:false</propertyDef>
-                                </properties>
-                            </adviceFile>
-                            <bundles>
-                                <bundleDef>org.wso2.carbon:org.wso2.carbon.springservices</bundleDef>
-                                <bundleDef>org.springframework.ws.wso2:spring.framework</bundleDef>
-                            </bundles>
-                            <importFeatures>
-                                <importFeatureDef>org.wso2.carbon.core.server:${wso2carbon.version}</importFeatureDef>
-                            </importFeatures>
-                        </configuration>
-                    </execution>
-                </executions>
+                <extensions>true</extensions>
+                <configuration>
+                    <id>org.wso2.carbon.springservices.server</id>
+                    <propertiesFile>../../../../etc/feature.properties</propertiesFile>
+                    <adviceFile>
+                        <properties>
+                            <propertyDef>org.wso2.carbon.p2.category.type:server</propertyDef>
+                            <propertyDef>org.eclipse.equinox.p2.type.group:false</propertyDef>
+                        </properties>
+                    </adviceFile>
+                    <bundles>
+                        <bundleDef>org.wso2.carbon:org.wso2.carbon.springservices</bundleDef>
+                        <bundleDef>org.springframework.ws.wso2:spring.framework</bundleDef>
+                    </bundles>
+                    <importFeatures>
+                        <importFeatureDef>org.wso2.carbon.core.server:${wso2carbon.version}</importFeatureDef>
+                    </importFeatures>
+                </configuration>
             </plugin>
         </plugins>
     </build>

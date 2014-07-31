@@ -28,7 +28,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>org.wso2.carbon.springservices.feature</artifactId>
-    <packaging>pom</packaging>
+    <packaging>carbon-feature</packaging>
     <name>Spring Service Hosting Feature</name>
     <url>http://wso2.org</url>
     <description>This feature contains the bundles required for Spring Service hosting functionality</description>
@@ -54,28 +54,20 @@
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>carbon-p2-plugin</artifactId>
                 <version>${carbon.p2.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>p2-feature-generation</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>p2-feature-gen</goal>
-                        </goals>
-                        <configuration>
-                            <id>org.wso2.carbon.springservices</id>
-                            <propertiesFile>../../../../etc/feature.properties</propertiesFile>
-                            <importFeatures>
-                                <importFeatureDef>org.wso2.carbon.core:${wso2carbon.version}</importFeatureDef>
-                            </importFeatures>
-                            <includedFeatures>
-                                <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.springservices.server.feature
-                                </includedFeatureDef>
-                                <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.springservices.ui.feature
-                                </includedFeatureDef>
-                            </includedFeatures>
-                        </configuration>
-                    </execution>
-                </executions>
+                <extensions>true</extensions>
+                <configuration>
+                    <id>org.wso2.carbon.springservices</id>
+                    <propertiesFile>../../../../etc/feature.properties</propertiesFile>
+                    <importFeatures>
+                        <importFeatureDef>org.wso2.carbon.core:${wso2carbon.version}</importFeatureDef>
+                    </importFeatures>
+                    <includedFeatures>
+                        <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.springservices.server.feature
+                        </includedFeatureDef>
+                        <includedFeatureDef>org.wso2.carbon:org.wso2.carbon.springservices.ui.feature
+                        </includedFeatureDef>
+                    </includedFeatures>
+                </configuration>
             </plugin>
         </plugins>
     </build>
